@@ -6,9 +6,9 @@ import { signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 var response
-var currentUser = null;
-var userId = null;
-var emailTemplate = "";
+var currentUser
+var userId
+var result
 var fb_gamedb;
 function fb_authenticate() {
     console.log('%c fb_initialise(): ', 
@@ -55,7 +55,7 @@ function fb_authenticate() {
     
         });
       };
-    function fb_write() {
+function fb_write() {
     if (!currentUser) {
         alert("Log in to fill out form");
         return;
@@ -67,7 +67,6 @@ function fb_authenticate() {
     var Dietaryrestrictions = document.getElementById("Dietaryrestrictions").value;
 
     var dbReference = ref(fb_gamedb, 'users/' + userId);
-    var userInformation = {HighScore: 10, Name: 'Ant'};
      set(dbReference, {
         Name: name,
         FavoriteFruit: favoriteFruit,
@@ -80,9 +79,9 @@ function fb_authenticate() {
     }).catch((error) => {
         console.log("unsuccesful write")
         console.log(error);
-        var response = 
     });
+    document.getElementById("response").innerHTML = "<h2>Hello! Thank you for taking interest in Sal's Strawberry Saloon©™®."+Age+" </h2>";
 }
-      export { 
+    export { 
     fb_authenticate, fb_write
  };
